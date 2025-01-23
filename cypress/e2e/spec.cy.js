@@ -55,6 +55,7 @@ describe("Overboeken", () => { //test scenario title
     cy.get("select[name=toaccount]").select(3); //kiest de rekening van sophie index 3 = sophie
     cy.get("textarea[name=description]").type("Je gaat geld overmaken maar je typt geen bedrag in"); //vult de omschrijving in
     cy.get("button[type=submit]").click();  //selecteert de button en clickt erop, test faalt want je moet persee een bedrag invullen
+    cy.get("#amount").invoke("prop","validationMessage").should("not.be.empty");
   })
 
   it("Je gaat geld overmaken maar je laat de rekening leeg", () => { //test beschrijving
@@ -64,6 +65,7 @@ describe("Overboeken", () => { //test scenario title
     cy.get("input#amount").type("7000"); //type de geld in die in de transaction moet komen
     cy.get("textarea[name=description]").type("Dit is een overboek bericht met geen rekening"); //vult de omschrijving in
     cy.get("button[type=submit]").click();  //selecteert de button en clickt erop, test faalt want je moet een rekening kiezen
+    cy.get("select[name=toaccount]").invoke("prop","validationMessage").should("not.be.empty");
   })
 
   it("Je gaat geld overmaken maar je laat de omschrijving venster leeg", () => { //test beschrijving
@@ -73,6 +75,7 @@ describe("Overboeken", () => { //test scenario title
     cy.get("select[name=toaccount]").select(3); //kiest de rekening van sophie index 3 = sophie
     cy.get("input#amount").type("1000"); //type de geld in die in de transaction moet komen
     cy.get("button[type=submit]").click();  //selecteert de button en clickt erop, het faalt want je moet een omschrijving invullen
+    cy.get("textarea[name=description]").invoke("prop","validationMessage").should("not.be.empty");
   })
 });
 
@@ -127,7 +130,7 @@ describe("Instellingen", () => { //test scenario title
     cy.visit("http://localhost:3000/settings");
     cy.get("input#accountName").clear();
     cy.get("button[type=submit]").click();
-    cy.get("h1").should("contain","Hoppa!");//faalt want kan niet leeg zijn
+    cy.get("#accountName").invoke("prop","validationMessage").should("not.be.empty");
   })
 })
 
