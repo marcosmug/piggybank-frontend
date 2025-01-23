@@ -82,13 +82,13 @@ describe("Overboeken", () => { //test scenario title
 describe("Account", () => { //test scenario title
   it("Je gaat inloggen op melvins account", () => { //test beschrijving
     cy.visit("http://localhost:3000/login"); //gaat naar login url
-    cy.get("button.login__account").eq(0).click(); //clickt op de account van cem index 2 = cem vervolgens clickt erop
+    cy.get("button.login__account").eq(0).click(); //clickt op de account van melvin index 0 = cem vervolgens clickt erop
     cy.get(".accounts__account-name").should("contain","Melvin");
   })
 
   it("Je gaat inloggen op Sara account", () => { //test beschrijving
     cy.visit("http://localhost:3000/login"); //gaat naar login url
-    cy.get("button.login__account").eq(1).click(); //clickt op de account van cem index 2 = cem vervolgens clickt erop
+    cy.get("button.login__account").eq(1).click(); //clickt op de account van sara index 1 = cem vervolgens clickt erop
     cy.get(".accounts__account-name").should("contain","Sara");
   })
 
@@ -100,7 +100,7 @@ describe("Account", () => { //test scenario title
 
   it("Je gaat inloggen op Sophie account", () => { //test beschrijving
     cy.visit("http://localhost:3000/login"); //gaat naar login url
-    cy.get("button.login__account").eq(3).click(); //clickt op de account van cem index 2 = cem vervolgens clickt erop
+    cy.get("button.login__account").eq(3).click(); //clickt op de account van sophie index 3 = cem vervolgens clickt erop
     cy.get(".accounts__account-name").should("contain","Sophie");
   })
 
